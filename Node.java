@@ -1,6 +1,6 @@
 public class Node {
   public Node(String value) {
-    data = "";
+    data = value;
   }
   private String data;
   private Node next, prev;
