@@ -39,6 +39,9 @@ public class MyLinkedList {
     if (index==0) {
       start = current;
     }
+    // else if (index==size) {
+    //
+    // }
     else {
       current.getPrev().setNext(adding);
       current.setPrev(adding);
@@ -61,6 +64,20 @@ public class MyLinkedList {
     Node newnode = getIndex(index);
     String ans = newnode.getData();
     newnode.setData(value);
+    return ans;
+  }
+  public String toString() {
+    String ans = "[";
+    if (size!=0) {
+      Node current = start;
+      while (current!=end) {
+        ans = ans + current.getData() + ", ";
+        current = current.getNext();
+      }
+    }
+    else {
+      ans = ans + "]";
+    }
     return ans;
   }
 }
