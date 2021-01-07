@@ -74,8 +74,8 @@ public class MyLinkedList {
     String ans = "[";
     if (size!=0) {
       for (int i=0; i<size; i++) {
-        ans+=get(i);
-        if (i!=size-1) ans+=", ";
+        ans = ans + get(i);
+        if (i!=size-1) ans = ans + ", ";
         else ans+= "]";
         }
       }
