@@ -82,4 +82,30 @@ public class MyLinkedList {
     if (size == 0) ans = "[]";
     return ans;
   }
+  public String remove(int index) {
+    if (index<0 || index>=size) {
+      throw new IndexOutOfBoundsException();
+    }
+    Node temp = getIndex(index);
+    if (size!=1) {
+      if (index==0) {
+        start = temp.getNext();
+        start.setPrev(null);
+      }
+      else if (index==size-1) {
+        end = temp.getPrev();
+        end.setNext(null);
+      }
+      else {
+        temp.getPrev().setNext(temp.getNext());
+        temp.getNext().setPrev(temp.getPrev());
+      }
+    }
+    else {
+      start = null;
+      end = null;
+    }
+    size--;
+    return temp.getData();
+  }
 }
