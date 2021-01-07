@@ -32,19 +32,26 @@ public class MyLinkedList {
     if (index<0 || index>size) {
       throw new IndexOutOfBoundsException();
     }
-    Node current = getIndex(index);
-    Node adding = new Node(value);
-    adding.setNext(current);
-    adding.setPrev(current.getPrev());
-    if (index==0) {
-      start = current;
+    if (size==0) {
+      add(value);
     }
-    // else if (index==size) {
-    //
-    // }
     else {
-      current.getPrev().setNext(adding);
-      current.setPrev(adding);
+      Node adding = new Node(value);
+      if (index==0) {
+        start.setPrev(adding);
+        adding.setNext(start);
+        start = adding;
+      }
+      else if (index==size) {
+        add(value);
+      }
+      else {
+        Node current = getIndex(index);
+        adding.setNext(current);
+        adding.setPrev(current.getPrev());
+        current.getPrev().setNext(adding);
+        current.setPrev(adding);
+      }
     }
     size++;
   }
@@ -52,10 +59,7 @@ public class MyLinkedList {
     if (index<0 || index>=size) {
       throw new IndexOutOfBoundsException();
     }
-    String ans = "";
-    Node temp = getIndex(index);
-    ans = temp.getData();
-    return ans;
+    return getIndex(index).getData();
   }
   public String set(int index, String value) {
     if (index<0 || index>=size) {
@@ -69,15 +73,13 @@ public class MyLinkedList {
   public String toString() {
     String ans = "[";
     if (size!=0) {
-      Node current = start;
-      while (current!=end) {
-        ans = ans + current.getData() + ", ";
-        current = current.getNext();
+      for (int i=0; i<size; i++) {
+        ans+=get(i);
+        if (i!=size-1) ans+=", ";
+        else ans+= "]";
+        }
       }
-    }
-    else {
-      ans = ans + "]";
-    }
+    if (size == 0) ans = "[]";
     return ans;
   }
 }
