@@ -51,4 +51,10 @@ public class MyLinkedList {
     ans = temp.getData();
     return ans;
   }
+  public String set(int index, String value) {
+    Node newnode = getIndex(index);
+    String ans = newnode.getData();
+    newnode.setData(value);
+    return ans;
+  }
 }
