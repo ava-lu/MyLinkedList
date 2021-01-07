@@ -45,4 +45,10 @@ public class MyLinkedList {
     }
     size++;
   }
+  public String get(int index) {
+    String ans = "";
+    Node temp = getIndex(index);
+    ans = temp.getData();
+    return ans;
+  }
 }
