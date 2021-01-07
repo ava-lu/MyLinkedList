@@ -12,12 +12,14 @@ public class MyLinkedList {
     if (size==0) {
       start = a;
       end = a;
+      size++;
       return true;
     }
     else {
       end.setNext(a);
       a.setPrev(end);
       end = a;
+      size++;
       return true;
     }
   }
