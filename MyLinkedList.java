@@ -32,7 +32,7 @@ public class MyLinkedList {
     if (index<0 || index>size) {
       throw new IndexOutOfBoundsException();
     }
-    if (size==0) {
+    if (index==size) {
       add(value);
     }
     else {
@@ -41,9 +41,7 @@ public class MyLinkedList {
         start.setPrev(adding);
         adding.setNext(start);
         start = adding;
-      }
-      else if (index==size) {
-        add(value);
+        size++;
       }
       else {
         Node current = getIndex(index);
@@ -51,9 +49,9 @@ public class MyLinkedList {
         adding.setPrev(current.getPrev());
         current.getPrev().setNext(adding);
         current.setPrev(adding);
+        size++;
       }
     }
-    size++;
   }
   public String get(int index) {
     if (index<0 || index>=size) {
@@ -110,9 +108,23 @@ public class MyLinkedList {
   }
   public void extend(MyLinkedList other) {
     this.end.setNext(other.start);
-    other.start.setPrev(this.end);
+    this.end.getNext().setPrev(this.end);
+    this.end = other.end;
+    this.size = this.size + other.size;
     other.size = 0;
     other.start = null;
     other.end = null;
+  }
+  public String toStringReversed() {
+    String ans = "[";
+    if (size!=0) {
+      for (int i=size-1; i>=0; i--) {
+        ans = ans + get(i);
+        if (i!=0) ans = ans + ", ";
+        else ans+= "]";
+        }
+      }
+    if (size == 0) ans = "[]";
+    return ans;
   }
 }
